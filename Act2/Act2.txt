@@ -5,34 +5,60 @@ Txt:
                 ENT:
                 ---------------------------------------------------------------------------------------------
                     Clase clsPersona 
-                      - nombre (get).
-                      - apellidos (get).
-                      - fecha (get).
-                       clsPersona()
-                       clsPersona(nombre,apellidos,edad)
+                      + id (get,set).
+                      + nombre (get,set).
+                      + iddept (get,set)
+                      clsPersona()
+                      clsPersona(id,nombre,dept)
+
+                    Clase clsDept 
+                      + iddept (get,set).
+                      + nombreDept (get,set).
+                      clsDept()
+                      clsDept(id,nombreDept)
                 DAL:
                 ---------------------------------------------------------------------------------------------
                     Clase clsListaPersonasDal.
-                       + listadoDePersonasDal<clsPersona>()
-
+                       + list <clsPersona> listadoDePersonasDal<clsPersona>()
+                       + list <clsDept> listadoDeptDal?<clsDept>(int iddept)
+                       + int <clsDept> numeroDePersonasEnDeptDl( int iddept)
             
                 BL:
                 ---------------------------------------------------------------------------------------------
-                    //No hace falta;
+                    Clase clsListaPersonasBL.
+                       + list <clsPersona> listadoDePersonasBL<clsPersona>()
+                       + list <clsDept> listadoDeptBL?<clsDept>(int iddept)
+                       + int <clsDept> numeroDePersonasEnDeptBL( int iddept)
 
 
          ViewModel: 
          --------------------------------------------------------------------------------------------------------
             MAUI:
                 Clase MainPageVM
-                    - listadoDePersonasVM(get,obtenerListaDePersonasDAL())
-                   
-
-         UI:
-         --------------------------------------------------------------------------------------------------------
-            MAUI:
-                Mainpage 
-                
+                     + list <clsPersona> listadoDePersonaVM
+                     + list <clsDept> listadoDeptVM
+                     + clsDept deptSeleccionado
+                     + int cantidadPersonas
+                     clslistadoDePersonaVM(){  
+                        listadoDeptVM =listadoDePersonasBL()
+                     }
+                     clslistadoDePersonaVM(int iddept){  
+                         listadoDePersonas = listadoDePersonasBL();
+                         cantidadPersonas= numeroDePersonasEnDeptBL();
+                     }
             ASP:     
-                MainView 
+                Clase MainViewVM
+                      + list clsDept<clsDept> listadoDeptVM
+                      + list  clsDept<clsPersona> listadoDePersonaVM
+                      + int cantidadPersonas
+
+
+                Controllers:
+
+                listadoDePersonas
+                    return view(listadoDePersonaVM)
+
+                [httpPsot]
+                listadoDePersonas(int iddept)
+                return view(new listadoDePersonaVM)
             

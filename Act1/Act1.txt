@@ -9,9 +9,8 @@ Txt:
                       - nombre string (get).
                       - apellidos string (get).
                       - fecha dateTime (get).
-                      - mayorDeEdad boolean (get).
                        clsPersona()
-                       clsPersona(id,nombre,apellidos,fecha,mayorDeEdad)
+                       clsPersona(id,nombre,apellidos,fecha)
                 DAL:
                 ---------------------------------------------------------------------------------------------
                     Clase clsListaPersonasDal.
@@ -32,9 +31,10 @@ Txt:
 
          UI:
          --------------------------------------------------------------------------------------------------------
-            MAUI:
-                Mainpage 
-                
-            ASP:     
-                MainView 
-            
+            Clase clsPersonaVM
+                + listadoPersonas<PersonaConCheck>= obtenerListaDePersonasDAL
+            Clase PersonaConCheck: clsPersona
+                + mayorDeEdad boolean{get ->mayorDeEdad()}
+                PersonaConCheck()
+                PersonaConCheck(boolean mayorDeEdad) : base
+
