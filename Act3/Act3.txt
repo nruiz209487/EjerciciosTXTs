@@ -1,0 +1,57 @@
+---------------------------------------------------------------------------------------------------------
+        Models:
+        -----------------------------------------------------------------------------------------------------
+                ENT:
+                ---------------------------------------------------------------------------------------------
+                    Clase clsMarca 
+                      + idMarca (get,set).
+                      + nombreMarca (get,set).
+                      clsMarca()
+                      clsMarca(idMarca, nombreMarca)
+
+                    Clase clsModelo 
+                      + idModelo (get,set).
+                      + nombreModelo (get,set).
+                      + idMarca (get,set)
+                      clsModelo()
+                      clsModelo(idModelo, nombreModelo, idMarca)
+                DAL:
+                ---------------------------------------------------------------------------------------------
+                    Clase clsListaCochesDal.
+                       + List<clsMarca> listadoDeMarcasDal<clsMarca>()
+                       + List<clsModelo> listadoModelosDal<clsModelo>(int idMarca)
+            
+                BL:
+                ---------------------------------------------------------------------------------------------
+                    Clase clsListaCochesBL.
+                       + List<clsMarca> listadoDeMarcasBL<clsMarca>()
+                       + List<clsModelo> listadoModelosBL<clsModelo>(int idMarca)
+
+
+         ViewModel: 
+         --------------------------------------------------------------------------------------------------------
+            MAUI:
+                Clase MainPageVM
+                     + List<clsMarca> listadoDeMarcasVM
+                     + List<clsModelo> listadoModelosVM
+                     + clsMarca marcaSeleccionada
+                     clsMainPageVM() {  
+                        listadoDeMarcasVM = listadoDeMarcasBL()
+                     }
+                     clsMainPageVM(int idMarca) {  
+                         listadoModelosVM = listadoModelosBL(idMarca)
+                     }
+            ASP:     
+                Clase MainViewVM
+                      + List<clsMarca> listadoDeMarcasVM
+                      + List<clsModelo> listadoModelosVM
+
+
+                Controllers:
+
+                listadoDeMarcas
+                    return view(new MainViewVM());
+
+                [HttpPost]
+                listadoModelos(int idMarca)
+                return view(new MainViewVM(idMarca));
