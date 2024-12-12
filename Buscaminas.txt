@@ -1,0 +1,37 @@
+ENT
+----------------------------------------------------------------------------------------------
+public class Casilla {
+     public Casilla() {}
+     public bool activa {get,set}
+     public bool activa {get,set}
+     public string img {get}
+     public string imgExplosion {get}
+}
+
+
+BL
+----------------------------------------------------------------------------------------------
+public class Service
+   public static list<Casilla> ObtenerMinas(int cantidadMinas,int cantidadDeMinasActiva){}
+
+
+
+
+UI
+----------------------------------------------------------------------------------------------
+public class  Partidas
+    public static int TAMTABLERO
+    public list<Casilla> {get;set;}
+    public bool partidaGanada {get;set;}
+    public Partidas() {}
+ 
+
+public class  VM
+{
+        public  Partidas PartidaActual {get;set;}
+        public  Casilla casillaSeleccionada {get;set;}
+        public  int aciertos {get;}
+        public  int fallos {get;}        
+}
+
+
